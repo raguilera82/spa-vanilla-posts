@@ -1,37 +1,42 @@
-export class AppElement extends HTMLElement {
+import { css, html, LitElement } from "lit";
 
-    constructor() {
-        super();
-        console.log('Inicializo App Element...');
+export class AppElement extends LitElement {
+
+    static get styles() {
+        return css`
+            :host {
+                display: block;
+                border: black solid 2px;
+            }
+            p {
+                color: var(--color-poc, green)
+            }
+            ::slotted(p) {
+                color: red;
+            }
+        `
     }
 
-    connectedCallback() {
-        this.hello = this.getAttribute("hello") || "Hola Mundo";
-        this.attachShadow({mode: 'open'});
-        this.shadowRoot.innerHTML = `
-           <style>
-                :host {
-                    display: block;
-                    border: black solid 2px;
-                }
-                p {
-                    color: var(--color-poc, green)
-                }
-                ::slotted(p) {
-                    color: red;
-                }
-            </style>
+    static get properties() {
+        return {
+            hello: {
+                type: String,
+                state: true
+            }
+        }
+    }
+
+    render() {
+       return html`
           <slot></slot>
           <p part="hello">${this.hello}</p>
-          <button>Click!</button>
+          <button @click="${this.clickMe}" ?disabled="${false}">Click!</button>
         `;
-
-        const buttonWilly = this.shadowRoot.querySelector("button");
-        buttonWilly.onclick = (e) => this.clickMe(e);
     }
 
     clickMe(e) {
         console.log(e);
+        this.hello = 'Evento';
         const message = new CustomEvent("poc:message", {
             bubbles: true,
             composed: true,

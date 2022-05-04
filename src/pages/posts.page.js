@@ -1,3 +1,5 @@
+import './../components/posts.component';
+
 export class PostsPage extends HTMLElement {
 
     constructor() {
@@ -5,7 +7,10 @@ export class PostsPage extends HTMLElement {
     }
 
     connectedCallback() {
-        this.innerHTML = `Posts Page`;
+        this.innerHTML = `
+            <h1>Posts Page</h1>
+            <genk-posts></genk-posts>
+        `;
     }
 
 }

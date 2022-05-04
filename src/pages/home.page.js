@@ -5,7 +5,10 @@ export class HomePage extends HTMLElement {
     }
 
     connectedCallback() {
-        this.innerHTML = `Home Page`;
+        this.innerHTML = `
+            <h1>Vanilla</h1>
+            <app-element hello="Hola Pablo"><p>¿Qué se va a mostrar?</p></app-element>
+        `;
     }
 
 }
