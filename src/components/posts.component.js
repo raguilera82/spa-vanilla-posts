@@ -1,7 +1,9 @@
 import { html, LitElement } from "lit";
+import { FilterPostsUseCase } from "../../instrumented/usecases/filter-posts.usecase";
 import { AllPostsUseCase } from "../usecases/all-posts.usecase";
 import { OddPostsUseCase } from "../usecases/odd-posts.usecase";
 import './../ui/posts.ui';
+import './../ui/search.ui';
 
 export class PostsComponent extends LitElement {
 
@@ -18,6 +20,12 @@ export class PostsComponent extends LitElement {
         super.connectedCallback();
         const allPostsUseCase = new AllPostsUseCase();
         this.posts = await allPostsUseCase.execute();
+
+        this.addEventListener("search:event", (e) => {
+            const filterPostsUseCase = new FilterPostsUseCase();
+            const searchText = e.detail.searchText;
+            this.posts = filterPostsUseCase.execute(this.posts, searchText);
+        })
     }
 
     async allOdds() {
@@ -27,9 +35,14 @@ export class PostsComponent extends LitElement {
 
     render() {
         return html`
-            <button @click="${this.allOdds}">Odd</button>
+            <button id="oddAction" @click="${this.allOdds}">Odd</button>
+            <genk-search></genk-search>
             <posts-ui .posts="${this.posts}"></posts-ui>
         `;
+    }
+
+    createRenderRoot() {
+        return this;
     }
 
 

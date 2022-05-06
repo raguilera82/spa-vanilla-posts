@@ -18,8 +18,12 @@ export class PostsUI extends LitElement {
                     ${post.id} -- ${post.title}
                 </li>
             `)}
-            </ul>
-        `;
+            </ul> 
+        `; 
+    }
+
+    createRenderRoot() {
+        return this;
     }
 
 }
