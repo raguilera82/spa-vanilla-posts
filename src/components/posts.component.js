@@ -27,9 +27,13 @@ export class PostsComponent extends LitElement {
 
     render() {
         return html`
-            <button @click="${this.allOdds}">Odd</button>
+            <button @click="${this.allOdds}" id="oddAction">Odd</button>
             <posts-ui .posts="${this.posts}"></posts-ui>
         `;
+    }
+
+    createRenderRoot() {
+        return this;
     }
 
 

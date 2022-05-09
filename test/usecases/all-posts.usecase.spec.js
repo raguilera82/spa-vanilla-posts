@@ -1,6 +1,6 @@
 import { PostsRepository } from "../../src/repositories/posts.repository"
 import { AllPostsUseCase } from "../../src/usecases/all-posts.usecase"
-import { POSTS } from "../fixtures/posts";
+import POSTS from './../../fixtures/posts.json';
 
 jest.mock('../../src/repositories/posts.repository');
 

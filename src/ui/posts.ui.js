@@ -22,6 +22,10 @@ export class PostsUI extends LitElement {
         `;
     }
 
+    createRenderRoot() {
+        return this;
+    }
+
 }
 
 customElements.define('posts-ui', PostsUI);

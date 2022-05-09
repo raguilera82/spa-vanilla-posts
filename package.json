@@ -8,7 +8,9 @@
     "start": "webpack serve --config=webpack.dev.js",
     "build": "webpack --config=webpack.prod.js",
     "test": "jest --passWithNoTests --coverage",
-    "lint": "semistandard --fix"
+    "lint": "semistandard --fix",
+    "cy:open": "cypress open",
+    "cy:test": "cypress run"
   },
   "commitlint": {
     "extends": "@commitlint/config-conventional"
@@ -42,10 +44,12 @@
     "@babel/preset-env": "^7.16.11",
     "@commitlint/cli": "^16.2.4",
     "@commitlint/config-conventional": "^16.2.4",
+    "@testing-library/cypress": "^8.0.2",
     "@testing-library/dom": "^8.13.0",
     "babel-jest": "^28.0.2",
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
+    "cypress": "^9.6.0",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.4",
